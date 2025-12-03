@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Wizard Form View -->
+        <record id="view_renumber_wizard_form" model="ir.ui.view">
+            <field name="name">order.posno.renumber.wizard.form</field>
+            <field name="model">order.posno.renumber.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Positionen bearbeiten">
+                    <group>
+                        <field name="action_type"/>
+                        <field name="start_number" invisible="action_type in ['move_front', 'move_back']"/>
+                        <field name="increment"/>
+                        <field name="avoid_duplicates" invisible="action_type != 'renumber'"/>
+                    </group>
+                    <footer>
+                        <button name="action_apply" string="Anwenden" type="object" class="btn-primary"/>
+                        <button string="Abbrechen" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <!-- Action für den Wizard -->
+        <record id="action_renumber_wizard" model="ir.actions.act_window">
+            <field name="name">Positionen bearbeiten</field>
+            <field name="res_model">order.posno.renumber.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="binding_model_id" ref="sale.model_sale_order_line"/>
+            <field name="binding_view_types">list</field>
+        </record>
+
+        <!-- Action für schnelles Neu nummerieren -->
+        <record id="action_quick_renumber" model="ir.actions.server">
+            <field name="name">Schnell neu nummerieren (10, 20, 30...)</field>
+            <field name="model_id" ref="sale.model_sale_order_line"/>
+            <field name="binding_model_id" ref="sale.model_sale_order_line"/>
+            <field name="binding_view_types">list</field>
+            <field name="state">code</field>
+            <field name="code">
+records.action_quick_renumber()
+            </field>
+        </record>
+    </data>
+</odoo>
