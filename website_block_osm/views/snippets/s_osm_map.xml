@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<template name="OpenStreetMap" id="s_osm_map">
+    <section class="s_osm_map pb56 pt56 o_snippet_drop_in_only" 
+             data-map-style="standard" 
+             data-map-zoom="12" 
+             data-map-lat="50.854975"
+             data-map-lng="4.3753899" 
+             data-pin-style="default"
+             data-pin-address="">
+        <div class="map_container o_not_editable"/>
+    </section>
+</template>
+
+<!-- Snippet's Options -->
+<template id="s_osm_map_options" inherit_id="website.snippet_options">
+    <xpath expr="//div[@data-js='Box']" position="before">
+        <div data-js="OsmMap" data-selector=".s_osm_map">
+            <we-button string="Firmenadresse verwenden" data-use-company-address="true"/>
+            <we-input string="Breitengrad (Latitude)"
+                data-select-data-attribute="50.854975"
+                data-attribute-name="mapLat"
+                placeholder="z.B. 52.5200"/>
+            <we-input string="Längengrad (Longitude)"
+                data-select-data-attribute="4.3753899"
+                data-attribute-name="mapLng"
+                placeholder="z.B. 13.4050"/>
+            <we-input string="Adresse (optional)"
+                data-select-data-attribute=""
+                data-attribute-name="pinAddress"
+                data-no-preview="true"
+                placeholder="z.B. Brandenburger Tor, Berlin"/>
+            <we-select string="Marker-Stil" data-attribute-name="pinStyle">
+                <we-button data-select-data-attribute="default">Standard</we-button>
+                <we-button data-select-data-attribute="custom">Benutzerdefiniert</we-button>
+            </we-select>
+            <we-select string="Karten-Stil" data-no-preview="true" data-attribute-name="mapStyle">
+                <we-button data-select-data-attribute="standard">Standard</we-button>
+                <we-button data-select-data-attribute="grayscale">Graustufen</we-button>
+                <we-button data-select-data-attribute="dark">Dunkel</we-button>
+                <we-button data-select-data-attribute="watercolor">Wasserfarben</we-button>
+                <we-button data-select-data-attribute="toner">Toner</we-button>
+            </we-select>
+            <we-input string="Zoom" 
+                      data-select-data-attribute="12" 
+                      data-no-preview="true" 
+                      data-attribute-name="mapZoom" 
+                      data-step="1"
+                      placeholder="1-18"/>
+            <we-checkbox string="Beschreibung" data-no-preview="true" data-show-description="true"/>
+        </div>
+    </xpath>
+</template>
+
+<!-- Add to Inner Content (after other maps) -->
+<template id="snippet_osm_map_content" inherit_id="website.snippets">
+    <xpath expr="//snippets[@id='snippet_content']/t[@t-snippet='website.s_google_map']" position="after">
+        <t t-snippet="website_block_osm.s_osm_map" string="OpenStreetMap" 
+           t-thumbnail="/website_block_osm/static/src/img/s_osm_map.svg">
+            <keywords>map, karte, openstreetmap</keywords>
+        </t>
+    </xpath>
+</template>
+
+<record id="s_osm_map_000_scss" model="ir.asset">
+    <field name="name">OSM map 000 SCSS</field>
+    <field name="bundle">web.assets_frontend</field>
+    <field name="path">website_block_osm/static/src/snippets/s_osm_map/000.scss</field>
+</record>
+
+<record id="s_osm_map_000_js" model="ir.asset">
+    <field name="name">OSM map 000 JS</field>
+    <field name="bundle">web.assets_frontend</field>
+    <field name="path">website_block_osm/static/src/snippets/s_osm_map/000.js</field>
+</record>
+
+<record id="s_osm_map_options_js" model="ir.asset">
+    <field name="name">OSM map options JS</field>
+    <field name="bundle">web.assets_frontend</field>
+    <field name="path">website_block_osm/static/src/snippets/s_osm_map/options.js</field>
+</record>
+
+</odoo>

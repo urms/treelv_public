@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 150">
+  <rect width="200" height="150" fill="#e8f4f8"/>
+  
+  <!-- Roads -->
+  <path d="M 20 80 L 180 80" stroke="#fff" stroke-width="4"/>
+  <path d="M 100 20 L 100 130" stroke="#fff" stroke-width="4"/>
+  
+  <!-- Marker -->
+  <g transform="translate(100, 75)">
+    <path d="M 0,-20 C -5.5,-20 -10,-15.5 -10,-10 C -10,-3 0,10 0,10 C 0,10 10,-3 10,-10 C 10,-15.5 5.5,-20 0,-20 Z" 
+          fill="#e74c3c" 
+          stroke="#c0392b" 
+          stroke-width="1"/>
+    <circle cx="0" cy="-10" r="3" fill="#fff"/>
+  </g>
+  
+  <!-- Grid lines -->
+  <line x1="0" y1="50" x2="200" y2="50" stroke="#ddd" stroke-width="1"/>
+  <line x1="0" y1="100" x2="200" y2="100" stroke="#ddd" stroke-width="1"/>
+  <line x1="50" y1="0" x2="50" y2="150" stroke="#ddd" stroke-width="1"/>
+  <line x1="150" y1="0" x2="150" y2="150" stroke="#ddd" stroke-width="1"/>
+  
+  <!-- Label -->
+  <text x="100" y="140" font-family="Arial, sans-serif" font-size="12" fill="#333" text-anchor="middle">OpenStreetMap</text>
+</svg>
